@@ -16,5 +16,27 @@ namespace Task_Day_2_ASP.Models.ClassBL
         {
             return Context.Students.FirstOrDefault((D) => D.Id == id ); ;
         }
+
+        public void UpdateDB(Student updateStd)
+        {
+            Context.Students.Update(updateStd);
+            Context.SaveChanges();
+        }
+
+        public void DeleteDB(Student removeStd)
+        {
+            Context.Students.Remove(removeStd);
+        }
+
+       
+       
+        public void Add(Student Std)
+        {
+           
+            Context.Students.Add(Std);
+            Context.SaveChanges();
+        }
+
+
     }
 }

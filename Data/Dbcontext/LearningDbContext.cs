@@ -7,7 +7,7 @@ namespace Task_Day_2_ASP.Data.Dbcontext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=test02;Integrated Security=True;Trust Server Certificate=True");
+            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=testmvc;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
         }
 
         public DbSet<Teacher> Teachers { get; set; }
@@ -24,6 +24,11 @@ namespace Task_Day_2_ASP.Data.Dbcontext
         {
             modelBuilder.Entity<StuCrsRes>()
                 .HasKey(s => new { s.StudentId, s.CourseId });
+
+            // إضافة الـ precision للـ Salary
+            modelBuilder.Entity<Teacher>()
+                .Property(t => t.Salary)
+                .HasPrecision(18, 2);
         }
     }
 }
