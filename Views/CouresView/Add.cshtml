@@ -1,12 +1,12 @@
 ﻿@using Task_Day_2_ASP.Models.ViewModel
-@model StudentViewModel
+@model CourseViewModel
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Add Course";
 }
-<h1>Edit Student</h1>
-<form method="post" asp-controller="Student" asp-action="SaveEdit">
-    <input type="hidden" asp-for="Id" />
 
+<h1>Add Course</h1>
+
+<form method="post" asp-controller="Course" asp-action="SaveAdd">
     <div class="mb-3">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
@@ -14,9 +14,15 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="Age"></label>
-        <input asp-for="Age" class="form-control" />
-        <span asp-validation-for="Age" class="text-danger"></span>
+        <label asp-for="Degree"></label>
+        <input asp-for="Degree" class="form-control" />
+        <span asp-validation-for="Degree" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MinDegree"></label>
+        <input asp-for="MinDegree" class="form-control" />
+        <span asp-validation-for="MinDegree" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
@@ -27,7 +33,7 @@
         <span asp-validation-for="DepartmentId" class="text-danger"></span>
     </div>
 
-    <input type="submit" value="Save" class="btn btn-primary mt-3" />
+    <input type="submit" value="Create" class="btn btn-primary mt-3" />
 </form>
 
 <a asp-action="Index">Back</a>

@@ -1,43 +1,37 @@
 ﻿@using Task_Day_2_ASP.Models.ViewModel
-
 @model DepartmentWithDetails
-
 @{
-	ViewData["Title"] = "Add";
+    ViewData["Title"] = "Add";
 }
 
-<h1>Add</h1>
+<h1>Add Department</h1>
 
 <form method="post" asp-controller="Department" asp-action="SaveAdd">
-	<div>
-		<label asp-for="Name"></label>
-		<input asp-for="Name" class="form-control" />
-	</div>
-	<div>
-		<label asp-for="MrgName"></label>
-		<input asp-for="MrgName" class="form-control" />
-	</div>
+    <div class="mb-3">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
 
-	<div>
-		<label asp-for="Id"></label>
-		<select asp-for="Id" asp-items="ViewBag.StdList" class="form-control">
-			<option value="0">-- Select Department --</option>
-			@* @foreach (var item in ViewBag.DeptList)
-			{
-				@if (Model?.DepartmentId == item.Id)
-				{
-					<option value="@item.Id" selected>@item.Name</option>
-				}
-				else
-				{
-					<option value="@item.Id">@item.Name</option>
-				}
-			} *@
-		</select>
-	</div>
-	<input type="submit" value="create" class="btn btn-primary mt-3" />
+    <div class="mb-3">
+        <label asp-for="MrgName"></label>
+        <input asp-for="MrgName" class="form-control" />
+        <span asp-validation-for="MrgName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Id"></label>
+        <select asp-for="Id" asp-items="ViewBag.StdList" class="form-control">
+            <option value="">-- Select Student --</option>
+        </select>
+        <span asp-validation-for="Id" class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Create" class="btn btn-primary mt-3" />
 </form>
 
 <a asp-action="Index">Back</a>
 
-
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

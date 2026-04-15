@@ -1,10 +1,12 @@
 ﻿@using Task_Day_2_ASP.Models.ViewModel
-@model StudentViewModel
+@model CourseViewModel
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Course";
 }
-<h1>Edit Student</h1>
-<form method="post" asp-controller="Student" asp-action="SaveEdit">
+
+<h1>Edit Course</h1>
+
+<form method="post" asp-controller="Course" asp-action="SaveEdit">
     <input type="hidden" asp-for="Id" />
 
     <div class="mb-3">
@@ -14,9 +16,15 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="Age"></label>
-        <input asp-for="Age" class="form-control" />
-        <span asp-validation-for="Age" class="text-danger"></span>
+        <label asp-for="Degree"></label>
+        <input asp-for="Degree" class="form-control" />
+        <span asp-validation-for="Degree" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MinDegree"></label>
+        <input asp-for="MinDegree" class="form-control" />
+        <span asp-validation-for="MinDegree" class="text-danger"></span>
     </div>
 
     <div class="mb-3">

@@ -12,20 +12,20 @@ namespace Task_Day_2_ASP.Controllers
         StudentBL StudentBL = new StudentBL();
         public IActionResult ShowAll()
         {
-            List <Department> dep = DepartmentBl.ShowAll();
+            List <Department> dep = DepartmentBl.GetAll();
             return View("ShowAllDep",dep);
         }
 
         public IActionResult ShowById(int id)
         {
-            Department dept = DepartmentBl.ShowByID(id);
+            Department dept = DepartmentBl.GetByID(id);
             return View("ShowById",dept);
         }
 
         
         public IActionResult ShowDetails(int id)
         {
-            Department Dept = DepartmentBl.ShowByID(id);
+            Department Dept = DepartmentBl.GetByID(id);
             DepartmentWithDetails DeptModel = new DepartmentWithDetails()
             {
                 Name = Dept.Name,
@@ -55,11 +55,16 @@ namespace Task_Day_2_ASP.Controllers
             return View("Add", NewDpt);
         }
 
+        public IActionResult Edit(int id)
+        {
+            return View("Edit",DepartmentBl.GetByID(id));
+        }
+
         [HttpGet]
         public IActionResult SaveEdit(Department NewDpt, int id)
         {
            
-            Department OldDpt = DepartmentBl.ShowByID(id);
+            Department OldDpt = DepartmentBl.GetByID(id);
           
             if (ModelState.IsValid)
             {

@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Task_Day_2_ASP.Models.Entities
+namespace Task_Day_2_ASP.Models.ViewModel
 {
-    public class Course
+    public class CourseViewModel
     {
         public int Id { get; set; }
 
@@ -22,10 +20,6 @@ namespace Task_Day_2_ASP.Models.Entities
         public int MinDegree { get; set; }
 
         [Required(ErrorMessage = "Department is required.")]
-        [ForeignKey("Department")]
         public int? DepartmentId { get; set; }
-
-        public Department? Departments { get; set; }
-        public List<Teacher>? Teachers { get; set; }
     }
 }

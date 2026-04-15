@@ -7,12 +7,12 @@ namespace Task_Day_2_ASP.Models.ClassBL
     {
         LearningDbContext Context = new LearningDbContext();
 
-        public List<Department> ShowAll()
+        public List<Department> GetAll()
         {
             return Context.Departments.ToList();
         }
 
-        public Department ShowByID(int id)
+        public Department GetByID(int id)
         {
             return Context.Departments.FirstOrDefault((d) => d.Id == id);
         }

@@ -47,23 +47,7 @@ namespace Task_Day_2_ASP.Controllers
         //    return View("Edit",SVMD);
         //}
 
-        public IActionResult SaveEdit(Student NewStudent,int id)
-        {
-            Student OldStudent  = StudentBL.GetById(id);
-            if (ModelState.IsValid)
-            {
-                //OldStudent.Name = NewStudent.Name;
-                //OldStudent.DepartmentId = NewStudent.DepartmentId;
-                //OldStudent.Age = NewStudent.Age;
-                //OldStudent.Id = NewStudent.Id;
-
-                //StudentBL.UpdateDB(OldStudent);
-                StudentBL.UpdateDB(NewStudent);
-                return RedirectToAction(nameof(Index));
-            }
-            return View("Index",NewStudent);
-            
-        }
+       
 
         public IActionResult Delete(int id)
         {
@@ -83,7 +67,7 @@ namespace Task_Day_2_ASP.Controllers
 
         public IActionResult Add()
         {
-            ViewData["DeptList"] = new SelectList(departmentBl.ShowAll(), "Id", "Name");
+            ViewData["DeptList"] = new SelectList(departmentBl.GetAll(), "Id", "Name");
             return View("Add"); 
         }
 
@@ -97,8 +81,32 @@ namespace Task_Day_2_ASP.Controllers
                
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DeptList"] = new SelectList(departmentBl.ShowAll(), "Id", "Name");
+            ViewData["DeptList"] = new SelectList(departmentBl.GetAll(), "Id", "Name");
             return View("Add", NewStd); 
+        }
+
+        public IActionResult Edit(int id)
+        {
+            ViewBag["DptList"] = new SelectList(departmentBl.GetAll(),"id","Name");
+            return View("Edit", StudentBL.GetById(id));
+        }
+
+        public IActionResult SaveEdit(Student NewStudent, int id)
+        {
+            Student OldStudent = StudentBL.GetById(id);
+            if (ModelState.IsValid)
+            {
+                OldStudent.Name = NewStudent.Name;
+                OldStudent.DepartmentId = NewStudent.DepartmentId;
+                OldStudent.Age = NewStudent.Age;
+                OldStudent.Id = NewStudent.Id;
+
+                StudentBL.UpdateDB(OldStudent);
+                StudentBL.UpdateDB(NewStudent);
+                return RedirectToAction(nameof(Index));
+            }
+            return View("Edit", NewStudent);
+
         }
 
     }
