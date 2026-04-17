@@ -1,3 +1,5 @@
+using Task_Day_2_ASP.Data.Dbcontext;
+
 namespace Task_Day_2_ASP
 {
     public class Program
@@ -7,7 +9,9 @@ namespace Task_Day_2_ASP
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            // Builder Design pattern >> self
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<LearningDbContext>();
 
             var app = builder.Build();
 
