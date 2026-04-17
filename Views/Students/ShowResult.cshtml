@@ -1,0 +1,22 @@
+﻿@using Task_Day_2_ASP.Models.ViewModel
+
+@{
+    ViewData["Title"] = "ShowResult";
+    Layout = "~/Views/Students/Create.cshtml";
+}
+@model StudentCourseResultViewModel
+
+<h2>Student Degree</h2>
+
+<p>
+    Student Name : @Model.StudentName
+</p>
+
+<p>
+    Course Name : @Model.CourseName
+</p>
+
+<p style="color:@Model.Color">
+    Degree : @Model.Degree
+</p>
+

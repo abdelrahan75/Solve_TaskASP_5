@@ -1,4 +1,5 @@
 using Task_Day_2_ASP.Data.Dbcontext;
+using Microsoft.EntityFrameworkCore;
 
 namespace Task_Day_2_ASP
 {

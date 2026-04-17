@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Task_Day_2_ASP.Data.Dbcontext;
+using Task_Day_2_ASP.Models.ClassBL;
 using Task_Day_2_ASP.Models.Entities;
+using Task_Day_2_ASP.Models.ViewModel;
 
 namespace Task_Day_2_ASP.Controllers
 {
@@ -160,6 +162,25 @@ namespace Task_Day_2_ASP.Controllers
         private bool StudentExists(int id)
         {
             return _context.Students.Any(e => e.Id == id);
+        }
+
+        public IActionResult ShowResult(int StuId,int CrsId)
+        {
+            Student std = _context.Students.FirstOrDefault(s=>s.Id==StuId);
+            Course Crs = _context.Courses.FirstOrDefault(c=>c.Id==CrsId);
+            StuCrsRes stuCourse = _context.StuCrsRes
+        .FirstOrDefault(sc => sc.StudentId == StuId && sc.CourseId == CrsId);
+
+            StudentCourseResultViewModel  vm = new StudentCourseResultViewModel();
+
+            vm.StudentName = std.Name;
+            vm.CourseName = Crs.Name;
+            vm.Degree = stuCourse.Degree;
+
+            vm.Color = stuCourse.Degree >= Crs.MinDegree ? "green" : "red";
+            return View(vm);
+
+
         }
     }
 }
